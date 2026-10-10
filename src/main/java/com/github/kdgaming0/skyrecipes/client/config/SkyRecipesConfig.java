@@ -84,6 +84,9 @@ public class SkyRecipesConfig extends MidnightConfig {
     @Entry(category = "rrv")
     public static boolean rememberSearchBetweenMenus = true;
 
+    @Entry(category = "rrv")
+    public static PriceSortMode priceSortMode = PriceSortMode.DEFAULT;
+
     @Entry(category = "rrv", isSlider = true, min = 100, max = 300, precision = 1)
     public static int rrvSearchBarWidth = 200;
 
@@ -98,6 +101,12 @@ public class SkyRecipesConfig extends MidnightConfig {
     // -----------------------------------------------------------------
     @Entry(category = "data", min = 15, max = 480, isSlider = true)
     public static int dataRefreshIntervalMinutes = 60;
+
+    public enum PriceSortMode {
+        DEFAULT,
+        CHEAPEST,
+        PRICIEST
+    }
 
     public enum CalculatorInputMode {
         SMART,

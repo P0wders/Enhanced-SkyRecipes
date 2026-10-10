@@ -56,6 +56,11 @@
 
   "skyrecipes.midnightconfig.rememberSearchBetweenMenus": "Remember Search Between Menus",
   "skyrecipes.midnightconfig.rememberSearchBetweenMenus.tooltip": "Keep the last item search or active calculation when menus are closed. When disabled, the next menu opens with a blank search bar.",
+  "skyrecipes.midnightconfig.priceSortMode": "Sort Item List by Price",
+  "skyrecipes.midnightconfig.priceSortMode.tooltip": "Order the item list by AH/Bazaar price: Bazaar instant-buy price, otherwise lowest BIN. Items without a price stay at the end. Requires Skyblocker with its Lowest BIN or Bazaar price tooltip enabled.",
+  "skyrecipes.midnightconfig.enum.PriceSortMode.DEFAULT": "Default",
+  "skyrecipes.midnightconfig.enum.PriceSortMode.CHEAPEST": "Cheapest (Ascending)",
+  "skyrecipes.midnightconfig.enum.PriceSortMode.PRICIEST": "Priciest (Descending)",
 
   "skyrecipes.midnightconfig.rrvSearchBarWidth": "Search Bar Width",
   "skyrecipes.midnightconfig.rrvSearchBarWidth.tooltip": "Minimum width for the search bar when wide mode is enabled.",
