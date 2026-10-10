@@ -202,6 +202,7 @@ public final class NeuCalculator {
         NUMBER,
         IDENTIFIER,
         VARIABLE,
+        PRICE,
         OPERATOR,
         POSTFIX,
         LEFT_PAREN,
@@ -375,6 +376,17 @@ public final class NeuCalculator {
                 position++;
             }
             String text = source.substring(start, position);
+            if (text.equalsIgnoreCase("price") && position < source.length() && source.charAt(position) == ':') {
+                // price:ITEM_NAME is one token; the item name is resolved by the VariableProvider
+                // as "price:<name>", so the name may contain postfix letters like k/m/b freely.
+                position++;
+                int nameStart = position;
+                while (position < source.length() && isIdentifierPart(source.charAt(position))) {
+                    position++;
+                }
+                tokens.add(new Token(TokenType.PRICE, source.substring(nameStart, position), start, position - start));
+                return;
+            }
             if (text.length() == 1 && "kmbtse".indexOf(Character.toLowerCase(text.charAt(0))) >= 0) {
                 tokens.add(new Token(TokenType.POSTFIX, text.toLowerCase(Locale.ROOT), start, 1));
             } else if (text.equalsIgnoreCase("x")) {
@@ -389,7 +401,7 @@ public final class NeuCalculator {
                 return false;
             }
             return switch (tokens.getLast().type) {
-                case NUMBER, IDENTIFIER, VARIABLE, POSTFIX, RIGHT_PAREN -> true;
+                case NUMBER, IDENTIFIER, VARIABLE, PRICE, POSTFIX, RIGHT_PAREN -> true;
                 default -> false;
             };
         }
@@ -428,7 +440,7 @@ public final class NeuCalculator {
             if (peek().type != TokenType.END) {
                 Token token = peek();
                 if (token.type == TokenType.LEFT_PAREN || token.type == TokenType.NUMBER || token.type == TokenType.IDENTIFIER
-                        || token.type == TokenType.VARIABLE) {
+                        || token.type == TokenType.VARIABLE || token.type == TokenType.PRICE) {
                     throw error("Implicit multiplication is not supported", token.offset, token.length);
                 }
                 throw error("Unexpected token '" + token.text + "'", token.offset, token.length);
@@ -518,6 +530,7 @@ public final class NeuCalculator {
                     }
                 }
                 case VARIABLE -> variable(consume());
+                case PRICE -> price(consume());
                 case IDENTIFIER -> identifier(consume());
                 case LEFT_PAREN -> parenthesized();
                 case END -> throw incomplete("Expected a value", sourceLength);
@@ -543,6 +556,20 @@ public final class NeuCalculator {
             }
             if (value.get() == null) {
                 throw error("Variable '" + variable.text + "' has no value", variable.offset, variable.length);
+            }
+            return value.get();
+        }
+
+        private BigDecimal price(Token price) throws Diagnostic, CalculatorException {
+            if (price.text.isEmpty()) {
+                if (price.end() >= sourceLength) {
+                    throw incomplete("Expected an item name after price:", sourceLength);
+                }
+                throw error("Expected an item name after price:", price.offset, price.length);
+            }
+            Optional<BigDecimal> value = variables.provideVariable("price:" + price.text);
+            if (value == null || value.isEmpty() || value.get() == null) {
+                throw error("No AH/Bazaar price for '" + price.text + "'", price.offset, price.length);
             }
             return value.get();
         }

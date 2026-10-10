@@ -1,0 +1,98 @@
+{
+  "skyrecipes.midnightconfig.title": "SkyRecipes Settings",
+
+  "skyrecipes.midnightconfig.calculatorEnabled": "Enable Calculator",
+  "skyrecipes.midnightconfig.calculatorEnabled.tooltip": "Evaluate math in the RRV search bar. Smart mode recognizes obvious calculations without requiring an = prefix.",
+  "skyrecipes.midnightconfig.calculatorInputMode": "Calculator Input Mode",
+  "skyrecipes.midnightconfig.calculatorInputMode.tooltip": "Smart recognizes obvious calculations automatically. Choose Explicit Only if you want every calculation to begin with =.",
+  "skyrecipes.midnightconfig.calculatorDisplayMode": "Calculator Display Mode",
+  "skyrecipes.midnightconfig.calculatorDisplayMode.tooltip": "Inside Search Bar keeps feedback compact. Expanded Panel shows results, errors, and help above the search bar.",
+  "skyrecipes.midnightconfig.calculatorPrecision": "Maximum Decimal Places",
+  "skyrecipes.midnightconfig.calculatorPrecision.tooltip": "Maximum decimal places shown in calculator results. This does not change calculation accuracy.",
+  "skyrecipes.midnightconfig.calculatorResultFormat": "Calculator Result Format",
+  "skyrecipes.midnightconfig.calculatorResultFormat.tooltip": "Automatic shows the clearest result that fits. Full Number uses digits and separators. Compact uses familiar k, m, b, and t suffixes.",
+  "skyrecipes.midnightconfig.calculatorHistorySize": "Calculator History Size",
+  "skyrecipes.midnightconfig.calculatorHistorySize.tooltip": "Number of calculations kept for Up/Down history during this game session.",
+  "skyrecipes.midnightconfig.calculatorContextSuggestions": "Calculator Suggestions",
+  "skyrecipes.midnightconfig.calculatorContextSuggestions.tooltip": "Show useful function and ans completions in gray. Press Tab or Right Arrow to accept one.",
+  "skyrecipes.midnightconfig.calculatorEscapeClosesMenu": "Escape Closes Menu",
+  "skyrecipes.midnightconfig.calculatorEscapeClosesMenu.tooltip": "Close the current menu when Escape is pressed during a calculation. Disable to leave calculator mode and restore the previous item search instead.",
+  "skyrecipes.midnightconfig.enum.CalculatorInputMode.SMART": "Smart (Recommended)",
+  "skyrecipes.midnightconfig.enum.CalculatorInputMode.EXPLICIT_ONLY": "Explicit Only",
+  "skyrecipes.midnightconfig.enum.CalculatorDisplayMode.INLINE": "Inside Search Bar",
+  "skyrecipes.midnightconfig.enum.CalculatorDisplayMode.PANEL": "Expanded Panel",
+  "skyrecipes.midnightconfig.enum.CalculatorResultFormat.ADAPTIVE": "Automatic (Recommended)",
+  "skyrecipes.midnightconfig.enum.CalculatorResultFormat.FULL": "Full Number (1,234,567)",
+  "skyrecipes.midnightconfig.enum.CalculatorResultFormat.COMPACT": "Compact (1.23m)",
+
+  "skyrecipes.midnightconfig.familyExpansionEnabled": "Show Recipe Paths",
+  "skyrecipes.midnightconfig.familyExpansionEnabled.tooltip": "Recipe shows the selected tier and the family steps leading to it. Usage puts the next family upgrade first.",
+
+  "skyrecipes.midnightconfig.groupTieredItems": "Group Tiered Items",
+  "skyrecipes.midnightconfig.groupTieredItems.tooltip": "Collapse tiered SkyBlock items (minion tiers, pet rarities, enchantment levels, accessory upgrades, ...) into expandable stacks in the item list. Individual groups can be managed in RRV's Stack Groups screen.",
+  "skyrecipes.midnightconfig.groupCraftedChains": "Group Crafted Upgrade Chains",
+  "skyrecipes.midnightconfig.groupCraftedChains.tooltip": "Also group items that craft directly into one another: compaction lines (Diamond → Enchanted Diamond → Enchanted Diamond Block), weapon upgrade lines (Aspect of the End → Aspect of the Void), and similar. Takes effect after the next data load (usually a game restart).",
+  "skyrecipes.midnightconfig.shardFusionRecipes": "Shard Fusion Recipes",
+  "skyrecipes.midnightconfig.shardFusionRecipes.tooltip": "Show fusion recipes for attribute shards (data from skyshards.com). Takes effect after the next data load (usually a game restart).",
+  "skyrecipes.midnightconfig.hideCategoryButtons": "Hide Category Buttons",
+  "skyrecipes.midnightconfig.hideCategoryButtons.tooltip": "Completely hides the compact category icon row above the RRV search bar.",
+
+  "skyrecipes.midnightconfig.hideCategoryButtonsWhenNotSearching": "Hide Category Buttons When Not Searching",
+  "skyrecipes.midnightconfig.hideCategoryButtonsWhenNotSearching.tooltip": "Hides category buttons when RRV is set to 'Only visible when searching' and the search bar is empty.",
+
+  "skyrecipes.midnightconfig.hideEmptyBookmarkPanel": "Hide Empty Bookmark Panel",
+  "skyrecipes.midnightconfig.hideEmptyBookmarkPanel.tooltip": "Auto-hides the bookmark side-panel when no bookmarks exist.",
+
+  "skyrecipes.midnightconfig.craftablesCountAware": "Craftables: Require Full Amounts",
+  "skyrecipes.midnightconfig.craftablesCountAware.tooltip": "When the side panel is set to Craftables, only show SkyBlock items whose full ingredient amounts are in your inventory. Disable to list an item as craftable when you have at least one of each ingredient, like RRV does for vanilla recipes.",
+
+  "skyrecipes.midnightconfig.wideRrvSearchBar": "Wide Search Bar",
+  "skyrecipes.midnightconfig.wideRrvSearchBar.tooltip": "Expands the RRV search bar. In centred mode it widens up to the configured width but never shrinks below RRV's default. In item-list mode it is limited by the available item-list space.",
+
+  "skyrecipes.midnightconfig.blockKeybindsWhileTyping": "Block Keybinds While Typing",
+  "skyrecipes.midnightconfig.blockKeybindsWhileTyping.tooltip": "Stops other mods' inventory keybinds from firing while you are typing in an RRV search box. Escape and Tab still work as normal.",
+  "skyrecipes.midnightconfig.optimizeItemListRendering": "Optimize Item List Rendering",
+  "skyrecipes.midnightconfig.optimizeItemListRendering.tooltip": "Draws the RRV item list in several layers per frame, which raises FPS a lot when the list is large. Turn this off if the item list looks wrong or another mod draws over it incorrectly.",
+
+  "skyrecipes.midnightconfig.rememberSearchBetweenMenus": "Remember Search Between Menus",
+  "skyrecipes.midnightconfig.rememberSearchBetweenMenus.tooltip": "Keep the last item search or active calculation when menus are closed. When disabled, the next menu opens with a blank search bar.",
+  "skyrecipes.midnightconfig.priceSortMode": "Sort Item List by Price",
+  "skyrecipes.midnightconfig.priceSortMode.tooltip": "Order the item list by AH/Bazaar price: Bazaar instant-buy price, otherwise lowest BIN. Items without a price stay at the end. Requires Skyblocker with its Lowest BIN or Bazaar price tooltip enabled.",
+  "skyrecipes.midnightconfig.enum.PriceSortMode.DEFAULT": "Default",
+  "skyrecipes.midnightconfig.enum.PriceSortMode.CHEAPEST": "Cheapest (Ascending)",
+  "skyrecipes.midnightconfig.enum.PriceSortMode.PRICIEST": "Priciest (Descending)",
+
+  "skyrecipes.midnightconfig.rrvSearchBarWidth": "Search Bar Width",
+  "skyrecipes.midnightconfig.rrvSearchBarWidth.tooltip": "Minimum width for the search bar when wide mode is enabled.",
+
+  "skyrecipes.midnightconfig.rrvItemListWidthPercent": "Item List Width",
+  "skyrecipes.midnightconfig.rrvItemListWidthPercent.tooltip": "Sets the RRV item-list overlay width as a percentage of the available space beside the inventory.",
+
+  "skyrecipes.midnightconfig.rrvSidePanelWidthPercent": "Side Panel Width",
+  "skyrecipes.midnightconfig.rrvSidePanelWidthPercent.tooltip": "Sets the RRV side-panel overlay width as a percentage of the available space beside the inventory.",
+
+  "skyrecipes.rrv.max_width_controlled_by_skyrecipes": "SkyRecipes uses percentage-based overlay widths. Configure them in SkyRecipes Settings.",
+
+  "skyrecipes.midnightconfig.dataRefreshIntervalMinutes": "Data Refresh Interval",
+  "skyrecipes.midnightconfig.dataRefreshIntervalMinutes.tooltip": "How often to check for updated NEU repository data (in minutes).",
+
+  "skyrecipes.midnightconfig.category.calculator": "Calculator",
+  "skyrecipes.midnightconfig.category.ui": "UI",
+  "skyrecipes.midnightconfig.category.rrv": "RRV",
+  "skyrecipes.midnightconfig.category.data": "Data",
+
+  "skyrecipes.calculator.result": "Result: %s",
+  "skyrecipes.calculator.incomplete": "Incomplete: %s",
+  "skyrecipes.calculator.error": "Error: %s",
+  "skyrecipes.calculator.hint.success.close": "Enter copy · Tab use · Esc close",
+  "skyrecipes.calculator.hint.success.return": "Enter copy · Tab use · Esc return",
+  "skyrecipes.calculator.hint.completion": "Tab or → complete",
+  "skyrecipes.calculator.copied": "Copied calculator result: %s",
+  "skyrecipes.calculator.inline.copied": " ✓ Copied",
+  "skyrecipes.calculator.help.operators": "+  -  *  /  x  ^  **  and parentheses",
+  "skyrecipes.calculator.help.suffixes": "Suffixes: k m b t · s=64 · e=160 · %=÷100",
+  "skyrecipes.calculator.help.functions": "Functions: abs min max round floor ceil sqrt · ans · price:item",
+  "skyrecipes.calculator.help.scientific": "1.5e6 is scientific notation; 1.5e is ×160",
+
+  "skyrecipes.midnightconfig.open_from_rrv": "SkyRecipes Settings..."
+}

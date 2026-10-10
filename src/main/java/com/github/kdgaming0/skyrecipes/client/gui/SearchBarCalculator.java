@@ -18,6 +18,8 @@ public final class SearchBarCalculator {
     private static final Pattern IDENTIFIER = Pattern.compile("[A-Za-z_]+");
     private static final Pattern TRAILING_IDENTIFIER = Pattern.compile("[A-Za-z_]+$");
     private static final Pattern SCIENTIFIC = Pattern.compile("(?i)(?:^|[^A-Za-z_])(?:\\d+(?:\\.\\d*)?|\\.\\d+)e[+-]?\\d+");
+    /** {@code price:ITEM} operand; masked to a number before Smart-mode classification. */
+    private static final Pattern PRICE_OPERAND = Pattern.compile("(?i)(?<![A-Za-z0-9_])price:[A-Za-z0-9_]*");
     private static final Pattern SUFFIX = Pattern.compile("(?i)(?:\\d|\\))\\s*[kmbtse](?=$|\\s|[+\\-*/^%),])");
 
     private SearchBarCalculator() {
@@ -29,6 +31,7 @@ public final class SearchBarCalculator {
             completions.add(function + "(");
         }
         completions.add("ans");
+        completions.add("price:");
         completions.sort(String::compareTo);
         return List.copyOf(completions);
     }
@@ -51,8 +54,15 @@ public final class SearchBarCalculator {
             return Calculation.normal();
         }
 
-        NeuCalculator.EvaluationResult evaluation = NeuCalculator.evaluate(expression, name ->
-                name.equalsIgnoreCase("ans") && ans != null ? Optional.of(ans) : Optional.empty());
+        NeuCalculator.EvaluationResult evaluation = NeuCalculator.evaluate(expression, name -> {
+            if (name.equalsIgnoreCase("ans")) {
+                return ans != null ? Optional.of(ans) : Optional.empty();
+            }
+            if (name.regionMatches(true, 0, "price:", 0, 6)) {
+                return ItemPriceLookup.price(name.substring(6));
+            }
+            return Optional.empty();
+        });
         String completion = SkyRecipesConfig.calculatorContextSuggestions
                 ? completionSuffix(expression)
                 : null;
@@ -74,6 +84,9 @@ public final class SearchBarCalculator {
             return true;
         }
         for (String completion : COMPLETIONS) {
+            if (completion.endsWith(":")) {
+                continue; // price: only counts once the colon is typed
+            }
             String function = completion.endsWith("(")
                     ? completion.substring(0, completion.length() - 1)
                     : completion;
@@ -104,6 +117,13 @@ public final class SearchBarCalculator {
     private static boolean isSmartExpression(String expression, boolean activeSession) {
         if (expression.isBlank()) {
             return false;
+        }
+        // Treat each price:ITEM as a plain number so its colon and item name don't look like
+        // search syntax; a price operand on its own already commits to calculator mode.
+        Matcher price = PRICE_OPERAND.matcher(expression);
+        if (price.find()) {
+            String masked = price.replaceAll("1");
+            return masked.strip().equals("1") || isSmartExpression(masked, true);
         }
         String lower = expression.toLowerCase(Locale.ROOT);
         char first = lower.charAt(0);

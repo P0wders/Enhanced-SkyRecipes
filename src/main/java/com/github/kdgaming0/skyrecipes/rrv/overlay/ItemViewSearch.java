@@ -5,12 +5,13 @@ import cc.cassian.rrv.common.config.Configs;
 import cc.cassian.rrv.common.overlay.itemlist.view.ItemFilters;
 import cc.cassian.rrv.common.overlay.itemlist.view.PrefixedFilter;
 import cc.cassian.rrv.common.recipe.stackgroup.StackGroupManager;
+import com.github.kdgaming0.skyrecipes.client.config.SkyRecipesConfig;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/** RRV 8.10 filtering/grouping, using job-owned lists instead of shared overlay fields. */
+/** RRV 8.10 filtering/grouping (plus optional price ordering), using job-owned lists instead of shared overlay fields. */
 public final class ItemViewSearch {
     private ItemViewSearch() { }
 
@@ -36,6 +37,7 @@ public final class ItemViewSearch {
         // Grouping may hand back a cached list. Never mutate an upstream-owned result.
         items = new ArrayList<>(items);
         items.removeIf(ItemView::isExcludedItem);
+        items = PriceSort.apply(items, SkyRecipesConfig.priceSortMode);
         return List.copyOf(items);
     }
 }

@@ -91,7 +91,7 @@
   "skyrecipes.calculator.inline.copied": " ✓ Copied",
   "skyrecipes.calculator.help.operators": "+  -  *  /  x  ^  **  and parentheses",
   "skyrecipes.calculator.help.suffixes": "Suffixes: k m b t · s=64 · e=160 · %=÷100",
-  "skyrecipes.calculator.help.functions": "Functions: abs min max round floor ceil sqrt · ans",
+  "skyrecipes.calculator.help.functions": "Functions: abs min max round floor ceil sqrt · ans · price:item",
   "skyrecipes.calculator.help.scientific": "1.5e6 is scientific notation; 1.5e is ×160",
 
   "skyrecipes.midnightconfig.open_from_rrv": "SkyRecipes Settings..."
